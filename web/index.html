@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VidPG video call</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <p class="eyebrow">PostgreSQL-mediated video lab</p>
+        <h1>Fresh frames, visible infrastructure.</h1>
+        <p class="lede">Two browser clients. One bounded JPEG path through the relay and PostgreSQL.</p>
+      </header>
+
+      <section class="panel session-panel" aria-labelledby="session-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / session</p>
+            <h2 id="session-heading">Create a private room</h2>
+          </div>
+          <span id="status" class="status" role="status">Loading client...</span>
+        </div>
+        <div class="actions">
+          <button id="create-session" class="button button-primary" type="button">Create session</button>
+          <button id="copy-peer" class="button" type="button" disabled>Copy peer link</button>
+          <button id="connect" class="button" type="button" disabled>Connect</button>
+          <button id="disconnect" class="button button-quiet" type="button" disabled>Disconnect</button>
+        </div>
+        <label class="field">
+          <span>Your link</span>
+          <input id="session-link" type="text" readonly placeholder="Create a session to generate a link">
+        </label>
+        <label class="field">
+          <span>Peer link</span>
+          <input id="peer-link" type="text" readonly placeholder="Copy this link to the other browser">
+        </label>
+        <p id="error" class="error" role="alert" hidden></p>
+      </section>
+
+      <section class="video-grid" aria-label="Video surfaces">
+        <article class="video-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">Local capture</p>
+              <h2>Camera</h2>
+            </div>
+            <span id="camera-settings" class="tag">Not started</span>
+          </div>
+          <video id="local-video" autoplay muted playsinline></video>
+          <canvas id="capture-canvas" width="1280" height="720" hidden></canvas>
+          <div class="actions">
+            <button id="start-camera" class="button button-primary" type="button" disabled>Start camera</button>
+            <button id="stop-camera" class="button button-quiet" type="button" disabled>Stop camera</button>
+          </div>
+        </article>
+
+        <article class="video-card remote-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">PostgreSQL egress</p>
+              <h2>Peer</h2>
+            </div>
+            <span class="tag">Newest frame only</span>
+          </div>
+          <div class="remote-stage">
+            <img id="remote-image" class="is-visible" alt="Remote peer video" decoding="async">
+            <img id="remote-image-buffer" alt="" aria-hidden="true" decoding="async">
+          </div>
+        </article>
+      </section>
+
+      <section class="panel metrics-panel" aria-labelledby="metrics-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / telemetry</p>
+            <h2 id="metrics-heading">Live counters</h2>
+          </div>
+        </div>
+        <p id="metrics" class="metrics" aria-live="polite">encoded 0 | sent 0 | rendered 0 | skipped 0</p>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

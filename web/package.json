@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "..\\.venv\\Scripts\\python.exe -m pytest ..\\tests\\unit\\browser -q",
+    "test:e2e": "..\\.venv\\Scripts\\python.exe -m pytest ..\\tests\\e2e\\browser -q"
+  }
+}
